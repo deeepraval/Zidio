@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Netflix Sign-Up</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #000;
+      color: #fff;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-form {
+      background-color:transparent;
+      padding: 23px;
+      border-radius: 30px;
+      box-shadow: 0 0 80px rgb(170, 4, 10);
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .input-group {
+      margin-bottom: 35px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      border-radius: 100px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 22px;
+      margin-bottom: 5px;
+    }
+
+    .input-group input {
+      width: 95%;
+      padding: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 60px;
+    }
+
+    .input-group input[type="submit"] {
+      background-color: #e50914;
+      color: #fff;
+      cursor: pointer;
+      border-radius: 220px;
+      margin: 5px;
+      padding: 15px;
+    }
+
+    .input-group input[type="submit"]:hover {
+      background-color: #ff3d3d;
+    }
+
+    h2 {
+      color: antiquewhite;
+      font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-image: url(NetFlix2.jpg);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-attachment: fixed;
+      background-size: cover;
+    }
+    .signup:hover{
+      font-size: medium;
+      text-decoration: underline;
+      padding: 2px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <form class="login-form">
+      <h2>Sign In</h2>
+      <div class="input-group">
+        <label for="email" style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Email </label>
+        <input type="email" id="email" name="email" placeholder="Email or mobile number" style="background-color: white; font-size: medium; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;"  required>
+      </div>
+      <div class="input-group">
+        <label for="password" style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Password </label>
+        <input type="password" id="password" name="password" placeholder="Password" style="background-color: white; font-size: medium; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" required>
+      </div>
+      <div class="input-group">
+        <input type="submit" value="Sign In" style="font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: larger;">      
+      </div>
+      <div>
+        <label for="" style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif; font-size:13px ;" >Don't have an account? <a href="Signup.html" style="color:blue " class="signup"  >Sign-Up</a></label>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

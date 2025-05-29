@@ -1,743 +1,907 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LifeSaver - Donate Blood, Save Lives</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* Global Styles */
-        :root {
-            --primary-color: #e74c3c;
-            --secondary-color: #c0392b;
-            --dark-color: #333;
-            --light-color: #f4f4f4;
-            --white: #fff;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: var(--dark-color);
-            background-color: var(--light-color);
-        }
-
-        a {
-            text-decoration: none;
-            color: var(--primary-color);
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        img {
-            width: 100%;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            overflow: hidden;
-        }
-
-        .btn {
-            display: inline-block;
-            background: var(--primary-color);
-            color: var(--white);
-            padding: 10px 25px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn:hover {
-            background: var(--secondary-color);
-            transform: translateY(-3px);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 1px solid var(--white);
-            color: var(--white);
-        }
-
-        .btn-outline:hover {
-            background: var(--white);
-            color: var(--primary-color);
-        }
-
-        .text-primary {
-            color: var(--primary-color);
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        .py-1 { padding: 10px 0; }
-        .py-2 { padding: 20px 0; }
-        .py-3 { padding: 30px 0; }
-
-        /* Navbar */
-        .navbar {
-            background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-
-        .navbar .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-        }
-
-        .navbar .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--primary-color);
-        }
-
-        .navbar .logo span {
-            color: var(--dark-color);
-        }
-
-        .navbar ul {
-            display: flex;
-        }
-
-        .navbar ul li {
-            margin-left: 20px;
-        }
-
-        .navbar ul li a {
-            color: var(--dark-color);
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .navbar ul li a:hover {
-            color: var(--primary-color);
-        }
-
-        .navbar .menu-toggle {
-            display: none;
-            cursor: pointer;
-            font-size: 22px;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
-            height: 100vh;
-            color: var(--white);
-            display: flex;
-            align-items: center;
-            text-align: center;
-            margin-top: 60px;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 20px;
-            margin-bottom: 30px;
-        }
-
-        /* About Section */
-        .about {
-            padding: 80px 0;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 40px;
-            align-items: center;
-        }
-
-        .about-img {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .about-content h2 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
-
-        .about-content p {
-            margin-bottom: 15px;
-        }
-
-        /* Donation Process */
-        .process {
-            background-color: var(--white);
-            padding: 80px 0;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-title h2 {
-            font-size: 36px;
-            margin-bottom: 15px;
-        }
-
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-        }
-
-        .process-step {
-            text-align: center;
-            padding: 30px 20px;
-            background: var(--light-color);
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-
-        .process-step:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .process-step i {
-            font-size: 40px;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-        }
-
-        .process-step h3 {
-            margin-bottom: 15px;
-        }
-
-        /* Eligibility */
-        .eligibility {
-            padding: 80px 0;
-        }
-
-        .eligibility-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .eligibility-list {
-            margin: 30px 0;
-        }
-
-        .eligibility-list li {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: flex-start;
-        }
-
-        .eligibility-list i {
-            color: var(--primary-color);
-            margin-right: 10px;
-            margin-top: 3px;
-        }
-
-        /* Donation Form */
-        .donate {
-            background-color: var(--white);
-            padding: 80px 0;
-        }
-
-        .form-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: var(--light-color);
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
-
-        .form-group input,
-        .form-group select,
-        .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-family: inherit;
-        }
-
-        .form-row {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .form-submit {
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        /* Footer */
-        .footer {
-            background-color: var(--dark-color);
-            color: var(--white);
-            padding: 60px 0 20px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
-            margin-bottom: 40px;
-        }
-
-        .footer-col h3 {
-            font-size: 20px;
-            margin-bottom: 20px;
-            position: relative;
-            padding-bottom: 10px;
-        }
-
-        .footer-col h3::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 50px;
-            height: 2px;
-            background: var(--primary-color);
-        }
-
-        .footer-col p {
-            margin-bottom: 15px;
-        }
-
-        .footer-col ul li {
-            margin-bottom: 10px;
-        }
-
-        .footer-col ul li a {
-            color: #bbb;
-            transition: color 0.3s ease;
-        }
-
-        .footer-col ul li a:hover {
-            color: var(--white);
-        }
-
-        .social-links {
-            display: flex;
-            margin-top: 20px;
-        }
-
-        .social-links a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            margin-right: 10px;
-            color: var(--white);
-            transition: all 0.3s ease;
-        }
-
-        .social-links a:hover {
-            background: var(--primary-color);
-            transform: translateY(-3px);
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 992px) {
-            .process-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .navbar .menu-toggle {
-                display: block;
-            }
-
-            .navbar ul {
-                position: fixed;
-                top: 60px;
-                left: -100%;
-                width: 100%;
-                height: calc(100vh - 60px);
-                background: var(--white);
-                flex-direction: column;
-                align-items: center;
-                padding: 40px 0;
-                transition: all 0.3s ease;
-            }
-
-            .navbar ul.active {
-                left: 0;
-            }
-
-            .navbar ul li {
-                margin: 15px 0;
-            }
-
-            .hero h1 {
-                font-size: 36px;
-            }
-
-            .hero p {
-                font-size: 18px;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .about-img {
-                order: -1;
-            }
-
-            .form-row {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .process-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero h1 {
-                font-size: 30px;
-            }
-
-            .hero p {
-                font-size: 16px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="index.html" class="logo">Life<span>Saver</span></a>
-            <div class="menu-toggle">
-                <i class="fas fa-bars"></i>
-            </div>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#process">Process</a></li>
-                <li><a href="#eligibility">Eligibility</a></li>
-                <li><a href="#donate" class="btn">Donate Now</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <h1>Donate Blood, Save Lives</h1>
-            <p>Every blood donation is a lifesaving gift. Join us in our mission to ensure no one dies due to lack of blood.</p>
-            <a href="#donate" class="btn btn-outline">Become a Donor</a>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about py-3">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-img">
-                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Blood Donation">
-                </div>
-                <div class="about-content">
-                    <h2>About Our Blood Donation Initiative</h2>
-                    <p>LifeSaver is a non-profit organization dedicated to ensuring a stable blood supply for patients in need. Our network connects donors with hospitals and blood banks across the country.</p>
-                    <p>Since our founding in 2010, we've facilitated over 1 million blood donations, saving countless lives. Our mission is to make blood donation simple, convenient, and rewarding.</p>
-                    <p>We believe that no one should die due to lack of blood, and with your help, we can make this vision a reality.</p>
-                    <a href="#process" class="btn">Learn More</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Donation Process -->
-    <section id="process" class="process py-3">
-        <div class="container">
-            <div class="section-title">
-                <h2>The Donation Process</h2>
-                <p>Donating blood is safe, simple, and saves lives. Here's how it works:</p>
-            </div>
-            <div class="process-grid">
-                <div class="process-step">
-                    <i class="fas fa-user-plus"></i>
-                    <h3>Registration</h3>
-                    <p>Complete a simple registration form with your basic information and medical history.</p>
-                </div>
-                <div class="process-step">
-                    <i class="fas fa-stethoscope"></i>
-                    <h3>Health Check</h3>
-                    <p>A quick health screening including blood pressure, pulse, and hemoglobin level check.</p>
-                </div>
-                <div class="process-step">
-                    <i class="fas fa-tint"></i>
-                    <h3>Donation</h3>
-                    <p>The actual donation takes about 8-10 minutes. You'll donate approximately one pint of blood.</p>
-                </div>
-                <div class="process-step">
-                    <i class="fas fa-cookie-bite"></i>
-                    <h3>Refreshment</h3>
-                    <p>Enjoy snacks and drinks while you rest for 10-15 minutes before resuming your day.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Eligibility -->
-    <section id="eligibility" class="eligibility py-3">
-        <div class="container">
-            <div class="eligibility-content">
-                <div class="section-title">
-                    <h2>Donor Eligibility</h2>
-                    <p>To donate blood, you need to meet these basic requirements:</p>
-                </div>
-                <ul class="eligibility-list">
-                    <li><i class="fas fa-check-circle"></i> Be in good general health and feeling well</li>
-                    <li><i class="fas fa-check-circle"></i> Be at least 17 years old in most states (16 with parental consent in some states)</li>
-                    <li><i class="fas fa-check-circle"></i> Weigh at least 110 pounds (additional weight requirements apply for donors 18 or younger)</li>
-                    <li><i class="fas fa-check-circle"></i> Not have donated blood in the last 8 weeks (56 days)</li>
-                    <li><i class="fas fa-check-circle"></i> Not have any infections or illnesses at the time of donation</li>
-                    <li><i class="fas fa-check-circle"></i> Not have engaged in any high-risk activities that may affect blood safety</li>
-                </ul>
-                <p class="text-center">If you have questions about your eligibility, please contact us before coming to donate.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Donation Form -->
-    <section id="donate" class="donate py-3">
-        <div class="container">
-            <div class="section-title">
-                <h2>Become a Blood Donor</h2>
-                <p>Fill out the form below to register as a blood donor. We'll contact you to schedule your donation.</p>
-            </div>
-            <div class="form-container">
-                <form id="donationForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="firstName">First Name</label>
-                            <input type="text" id="firstName" name="firstName" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="lastName">Last Name</label>
-                            <input type="text" id="lastName" name="lastName" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="dob">Date of Birth</label>
-                            <input type="date" id="dob" name="dob" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="bloodType">Blood Type</label>
-                            <select id="bloodType" name="bloodType" required>
-                                <option value="">Select Blood Type</option>
-                                <option value="A+">A+</option>
-                                <option value="A-">A-</option>
-                                <option value="B+">B+</option>
-                                <option value="B-">B-</option>
-                                <option value="AB+">AB+</option>
-                                <option value="AB-">AB-</option>
-                                <option value="O+">O+</option>
-                                <option value="O-">O-</option>
-                                <option value="unknown">I don't know</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="address">Address</label>
-                        <input type="text" id="address" name="address" required>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="city">City</label>
-                            <input type="text" id="city" name="city" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="zip">ZIP Code</label>
-                            <input type="text" id="zip" name="zip" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="availability">When are you available to donate?</label>
-                        <select id="availability" name="availability" required>
-                            <option value="">Select Availability</option>
-                            <option value="weekdays">Weekdays</option>
-                            <option value="weekends">Weekends</option>
-                            <option value="both">Both</option>
-                            <option value="specific">Specific Date</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Additional Information (Optional)</label>
-                        <textarea id="message" name="message" rows="4"></textarea>
-                    </div>
-                    <div class="form-submit">
-                        <button type="submit" class="btn">Submit Donation Form</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-col">
-                    <h3>About LifeSaver</h3>
-                    <p>LifeSaver is dedicated to ensuring a stable blood supply for patients in need through voluntary blood donations.</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    </div>
-                </div>
-                <div class="footer-col">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#process">Donation Process</a></li>
-                        <li><a href="#eligibility">Eligibility</a></li>
-                        <li><a href="#donate">Donate Now</a></li>
-                    </ul>
-                </div>
-                <div class="footer-col">
-                    <h3>Contact Us</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> 123 Health Street, Medical City</p>
-                    <p><i class="fas fa-phone"></i> (123) 456-7890</p>
-                    <p><i class="fas fa-envelope"></i> info@lifesaver.org</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2023 LifeSaver. All Rights Reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-       
-        const menuToggle = document.querySelector('.menu-toggle');
-        const navLinks = document.querySelector('.navbar ul');
-
-        menuToggle.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-        
-        document.querySelectorAll('.navbar ul li a').forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-            });
-        });
-
-        const donationForm = document.getElementById('donationForm');
-        
-        donationForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(donationForm);
-            const formValues = Object.fromEntries(formData.entries());
-            
-            console.log('Form submitted:', formValues);
-            
-            alert('Thank you for registering as a blood donor! We will contact you soon to schedule your donation.');
-          
-            donationForm.reset();
-        });
-
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 70,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-            } else {
-                navbar.style.boxShadow = 'none';
-            }
-        });
-    </script>
-</body>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>LifeSaver - Donate Blood, Save Lives</title>
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+		/>
+		<style>
+			/* Global Styles */
+			:root {
+				--primary-color: #e74c3c;
+				--secondary-color: #c0392b;
+				--dark-color: #333;
+				--light-color: #f4f4f4;
+				--white: #fff;
+			}
+
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+				line-height: 1.6;
+				color: var(--dark-color);
+				background-color: var(--light-color);
+			}
+
+			a {
+				text-decoration: none;
+				color: var(--primary-color);
+			}
+
+			ul {
+				list-style: none;
+			}
+
+			img {
+				width: 100%;
+			}
+
+			.container {
+				max-width: 1200px;
+				margin: 0 auto;
+				padding: 0 20px;
+				overflow: hidden;
+			}
+
+			.btn {
+				display: inline-block;
+				background: var(--primary-color);
+				color: var(--white);
+				padding: 10px 25px;
+				border: none;
+				border-radius: 5px;
+				cursor: pointer;
+				transition: all 0.3s ease;
+			}
+
+			.btn:hover {
+				background: var(--secondary-color);
+				transform: translateY(-3px);
+			}
+
+			.btn-outline {
+				background: transparent;
+				border: 1px solid var(--white);
+				color: var(--white);
+			}
+
+			.btn-outline:hover {
+				background: var(--white);
+				color: var(--primary-color);
+			}
+
+			.text-primary {
+				color: var(--primary-color);
+			}
+
+			.text-center {
+				text-align: center;
+			}
+
+			.py-1 {
+				padding: 10px 0;
+			}
+			.py-2 {
+				padding: 20px 0;
+			}
+			.py-3 {
+				padding: 30px 0;
+			}
+
+			/* Navbar */
+			.navbar {
+				background-color: var(--white);
+				box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+				position: fixed;
+				top: 0;
+				width: 100%;
+				z-index: 1000;
+			}
+
+			.navbar .container {
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				padding: 15px 20px;
+			}
+
+			.navbar .logo {
+				font-size: 24px;
+				font-weight: bold;
+				color: var(--primary-color);
+			}
+
+			.navbar .logo span {
+				color: var(--dark-color);
+			}
+
+			.navbar ul {
+				display: flex;
+			}
+
+			.navbar ul li {
+				margin-left: 20px;
+			}
+
+			.navbar ul li a {
+				color: var(--dark-color);
+				font-weight: 500;
+				transition: color 0.3s ease;
+			}
+
+			.navbar ul li a:hover {
+				color: var(--primary-color);
+			}
+
+			.navbar .menu-toggle {
+				display: none;
+				cursor: pointer;
+				font-size: 22px;
+			}
+
+			/* Hero Section */
+			.hero {
+				background: linear-gradient(
+						rgba(0, 0, 0, 0.7),
+						rgba(0, 0, 0, 0.7)
+					),
+					url("https://images.unsplash.com/photo-1576091160550-2173dba999ef?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80")
+						no-repeat center center/cover;
+				height: 100vh;
+				color: var(--white);
+				display: flex;
+				align-items: center;
+				text-align: center;
+				margin-top: 60px;
+			}
+
+			.hero-content {
+				max-width: 800px;
+				margin: 0 auto;
+				padding: 0 20px;
+			}
+
+			.hero h1 {
+				font-size: 48px;
+				margin-bottom: 20px;
+			}
+
+			.hero p {
+				font-size: 20px;
+				margin-bottom: 30px;
+			}
+
+			/* About Section */
+			.about {
+				padding: 80px 0;
+			}
+
+			.about-grid {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 40px;
+				align-items: center;
+			}
+
+			.about-img {
+				border-radius: 10px;
+				overflow: hidden;
+				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+			}
+
+			.about-content h2 {
+				font-size: 36px;
+				margin-bottom: 20px;
+			}
+
+			.about-content p {
+				margin-bottom: 15px;
+			}
+
+			/* Donation Process */
+			.process {
+				background-color: var(--white);
+				padding: 80px 0;
+			}
+
+			.section-title {
+				text-align: center;
+				margin-bottom: 50px;
+			}
+
+			.section-title h2 {
+				font-size: 36px;
+				margin-bottom: 15px;
+			}
+
+			.process-grid {
+				display: grid;
+				grid-template-columns: repeat(4, 1fr);
+				gap: 30px;
+			}
+
+			.process-step {
+				text-align: center;
+				padding: 30px 20px;
+				background: var(--light-color);
+				border-radius: 10px;
+				transition: all 0.3s ease;
+			}
+
+			.process-step:hover {
+				transform: translateY(-10px);
+				box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+			}
+
+			.process-step i {
+				font-size: 40px;
+				color: var(--primary-color);
+				margin-bottom: 20px;
+			}
+
+			.process-step h3 {
+				margin-bottom: 15px;
+			}
+
+			/* Eligibility */
+			.eligibility {
+				padding: 80px 0;
+			}
+
+			.eligibility-content {
+				max-width: 800px;
+				margin: 0 auto;
+			}
+
+			.eligibility-list {
+				margin: 30px 0;
+			}
+
+			.eligibility-list li {
+				margin-bottom: 15px;
+				display: flex;
+				align-items: flex-start;
+			}
+
+			.eligibility-list i {
+				color: var(--primary-color);
+				margin-right: 10px;
+				margin-top: 3px;
+			}
+
+			/* Donation Form */
+			.donate {
+				background-color: var(--white);
+				padding: 80px 0;
+			}
+
+			.form-container {
+				max-width: 800px;
+				margin: 0 auto;
+				background: var(--light-color);
+				padding: 40px;
+				border-radius: 10px;
+				box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+			}
+
+			.form-group {
+				margin-bottom: 20px;
+			}
+
+			.form-group label {
+				display: block;
+				margin-bottom: 5px;
+				font-weight: 500;
+			}
+
+			.form-group input,
+			.form-group select,
+			.form-group textarea {
+				width: 100%;
+				padding: 12px;
+				border: 1px solid #ddd;
+				border-radius: 5px;
+				font-family: inherit;
+			}
+
+			.form-row {
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 20px;
+			}
+
+			.form-submit {
+				text-align: center;
+				margin-top: 30px;
+			}
+
+			/* Footer */
+			.footer {
+				background-color: var(--dark-color);
+				color: var(--white);
+				padding: 60px 0 20px;
+			}
+
+			.footer-grid {
+				display: grid;
+				grid-template-columns: repeat(3, 1fr);
+				gap: 40px;
+				margin-bottom: 40px;
+			}
+
+			.footer-col h3 {
+				font-size: 20px;
+				margin-bottom: 20px;
+				position: relative;
+				padding-bottom: 10px;
+			}
+
+			.footer-col h3::after {
+				content: "";
+				position: absolute;
+				left: 0;
+				bottom: 0;
+				width: 50px;
+				height: 2px;
+				background: var(--primary-color);
+			}
+
+			.footer-col p {
+				margin-bottom: 15px;
+			}
+
+			.footer-col ul li {
+				margin-bottom: 10px;
+			}
+
+			.footer-col ul li a {
+				color: #bbb;
+				transition: color 0.3s ease;
+			}
+
+			.footer-col ul li a:hover {
+				color: var(--white);
+			}
+
+			.social-links {
+				display: flex;
+				margin-top: 20px;
+			}
+
+			.social-links a {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				width: 40px;
+				height: 40px;
+				background: rgba(255, 255, 255, 0.1);
+				border-radius: 50%;
+				margin-right: 10px;
+				color: var(--white);
+				transition: all 0.3s ease;
+			}
+
+			.social-links a:hover {
+				background: var(--primary-color);
+				transform: translateY(-3px);
+			}
+
+			.footer-bottom {
+				text-align: center;
+				padding-top: 20px;
+				border-top: 1px solid rgba(255, 255, 255, 0.1);
+			}
+
+			/* Responsive Styles */
+			@media (max-width: 992px) {
+				.process-grid {
+					grid-template-columns: repeat(2, 1fr);
+				}
+
+				.footer-grid {
+					grid-template-columns: repeat(2, 1fr);
+				}
+			}
+
+			@media (max-width: 768px) {
+				.navbar .menu-toggle {
+					display: block;
+				}
+
+				.navbar ul {
+					position: fixed;
+					top: 60px;
+					left: -100%;
+					width: 100%;
+					height: calc(100vh - 60px);
+					background: var(--white);
+					flex-direction: column;
+					align-items: center;
+					padding: 40px 0;
+					transition: all 0.3s ease;
+				}
+
+				.navbar ul.active {
+					left: 0;
+				}
+
+				.navbar ul li {
+					margin: 15px 0;
+				}
+
+				.hero h1 {
+					font-size: 36px;
+				}
+
+				.hero p {
+					font-size: 18px;
+				}
+
+				.about-grid {
+					grid-template-columns: 1fr;
+				}
+
+				.about-img {
+					order: -1;
+				}
+
+				.form-row {
+					grid-template-columns: 1fr;
+				}
+			}
+
+			@media (max-width: 576px) {
+				.process-grid {
+					grid-template-columns: 1fr;
+				}
+
+				.footer-grid {
+					grid-template-columns: 1fr;
+				}
+
+				.hero h1 {
+					font-size: 30px;
+				}
+
+				.hero p {
+					font-size: 16px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Navbar -->
+		<nav class="navbar">
+			<div class="container">
+				<a href="index.html" class="logo">Life<span>Saver</span></a>
+				<div class="menu-toggle">
+					<i class="fas fa-bars"></i>
+				</div>
+				<ul>
+					<li><a href="#home">Home</a></li>
+					<li><a href="#about">About</a></li>
+					<li><a href="#process">Process</a></li>
+					<li><a href="#eligibility">Eligibility</a></li>
+					<li><a href="#donate" class="btn">Donate Now</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<!-- Hero Section -->
+		<section id="home" class="hero">
+			<div class="hero-content">
+				<h1>Donate Blood, Save Lives</h1>
+				<p>
+					Every blood donation is a lifesaving gift. Join us in our
+					mission to ensure no one dies due to lack of blood.
+				</p>
+				<a href="#donate" class="btn btn-outline">Become a Donor</a>
+			</div>
+		</section>
+
+		<!-- About Section -->
+		<section id="about" class="about py-3">
+			<div class="container">
+				<div class="about-grid">
+					<div class="about-img">
+						<img
+							src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+							alt="Blood Donation"
+						/>
+					</div>
+					<div class="about-content">
+						<h2>About Our Blood Donation Initiative</h2>
+						<p>
+							LifeSaver is a non-profit organization dedicated to
+							ensuring a stable blood supply for patients in need.
+							Our network connects donors with hospitals and blood
+							banks across the country.
+						</p>
+						<p>
+							Since our founding in 2010, we've facilitated over 1
+							million blood donations, saving countless lives. Our
+							mission is to make blood donation simple,
+							convenient, and rewarding.
+						</p>
+						<p>
+							We believe that no one should die due to lack of
+							blood, and with your help, we can make this vision a
+							reality.
+						</p>
+						<a href="#process" class="btn">Learn More</a>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Donation Process -->
+		<section id="process" class="process py-3">
+			<div class="container">
+				<div class="section-title">
+					<h2>The Donation Process</h2>
+					<p>
+						Donating blood is safe, simple, and saves lives. Here's
+						how it works:
+					</p>
+				</div>
+				<div class="process-grid">
+					<div class="process-step">
+						<i class="fas fa-user-plus"></i>
+						<h3>Registration</h3>
+						<p>
+							Complete a simple registration form with your basic
+							information and medical history.
+						</p>
+					</div>
+					<div class="process-step">
+						<i class="fas fa-stethoscope"></i>
+						<h3>Health Check</h3>
+						<p>
+							A quick health screening including blood pressure,
+							pulse, and hemoglobin level check.
+						</p>
+					</div>
+					<div class="process-step">
+						<i class="fas fa-tint"></i>
+						<h3>Donation</h3>
+						<p>
+							The actual donation takes about 8-10 minutes. You'll
+							donate approximately one pint of blood.
+						</p>
+					</div>
+					<div class="process-step">
+						<i class="fas fa-cookie-bite"></i>
+						<h3>Refreshment</h3>
+						<p>
+							Enjoy snacks and drinks while you rest for 10-15
+							minutes before resuming your day.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Eligibility -->
+		<section id="eligibility" class="eligibility py-3">
+			<div class="container">
+				<div class="eligibility-content">
+					<div class="section-title">
+						<h2>Donor Eligibility</h2>
+						<p>
+							To donate blood, you need to meet these basic
+							requirements:
+						</p>
+					</div>
+					<ul class="eligibility-list">
+						<li>
+							<i class="fas fa-check-circle"></i> Be in good
+							general health and feeling well
+						</li>
+						<li>
+							<i class="fas fa-check-circle"></i> Be at least 17
+							years old in most states (16 with parental consent
+							in some states)
+						</li>
+						<li>
+							<i class="fas fa-check-circle"></i> Weigh at least
+							110 pounds (additional weight requirements apply for
+							donors 18 or younger)
+						</li>
+						<li>
+							<i class="fas fa-check-circle"></i> Not have donated
+							blood in the last 8 weeks (56 days)
+						</li>
+						<li>
+							<i class="fas fa-check-circle"></i> Not have any
+							infections or illnesses at the time of donation
+						</li>
+						<li>
+							<i class="fas fa-check-circle"></i> Not have engaged
+							in any high-risk activities that may affect blood
+							safety
+						</li>
+					</ul>
+					<p class="text-center">
+						If you have questions about your eligibility, please
+						contact us before coming to donate.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- Donation Form -->
+		<section id="donate" class="donate py-3">
+			<div class="container">
+				<div class="section-title">
+					<h2>Become a Blood Donor</h2>
+					<p>
+						Fill out the form below to register as a blood donor.
+						We'll contact you to schedule your donation.
+					</p>
+				</div>
+				<div class="form-container">
+					<form
+						id="donationForm"					>
+						<div class="form-row">
+							<div class="form-group">
+								<label for="firstName">First Name</label>
+								<input
+									type="text"
+									id="firstName"
+									name="firstName"
+									required
+								/>
+							</div>
+							<div class="form-group">
+								<label for="lastName">Last Name</label>
+								<input
+									type="text"
+									id="lastName"
+									name="lastName"
+									required
+								/>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group">
+								<label for="email">Email</label>
+								<input
+									type="email"
+									id="email"
+									name="email"
+									required
+								/>
+							</div>
+							<div class="form-group">
+								<label for="phone">Phone Number</label>
+								<input
+									type="tel"
+									id="phone"
+									name="phone"
+									required
+								/>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="form-group">
+								<label for="dob">Date of Birth</label>
+								<input
+									type="date"
+									id="dob"
+									name="dob"
+									required
+								/>
+							</div>
+							<div class="form-group">
+								<label for="bloodType">Blood Type</label>
+								<select
+									id="bloodType"
+									name="bloodType"
+									required
+								>
+									<option value="">Select Blood Type</option>
+									<option value="A+">A+</option>
+									<option value="A-">A-</option>
+									<option value="B+">B+</option>
+									<option value="B-">B-</option>
+									<option value="AB+">AB+</option>
+									<option value="AB-">AB-</option>
+									<option value="O+">O+</option>
+									<option value="O-">O-</option>
+									<option value="unknown">
+										I don't know
+									</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="address">Address</label>
+							<input
+								type="text"
+								id="address"
+								name="address"
+								required
+							/>
+						</div>
+						<div class="form-row">
+							<div class="form-group">
+								<label for="city">City</label>
+								<input
+									type="text"
+									id="city"
+									name="city"
+									required
+								/>
+							</div>
+							<div class="form-group">
+								<label for="zip">ZIP Code</label>
+								<input
+									type="text"
+									id="zip"
+									name="zip"
+									required
+								/>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="availability"
+								>When are you available to donate?</label
+							>
+							<select
+								id="availability"
+								name="availability"
+								required
+							>
+								<option value="">Select Availability</option>
+								<option value="weekdays">Weekdays</option>
+								<option value="weekends">Weekends</option>
+								<option value="both">Both</option>
+								<option value="specific">Specific Date</option>
+							</select>
+						</div>
+						<div class="form-group">
+							<label for="message"
+								>Additional Information (Optional)</label
+							>
+							<textarea
+								id="message"
+								name="message"
+								rows="4"
+							></textarea>
+						</div>
+						<div class="form-submit">
+							<button type="submit" class="btn">
+								Submit Donation Form
+							</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</section>
+
+		<!-- Footer -->
+		<footer class="footer">
+			<div class="container">
+				<div class="footer-grid">
+					<div class="footer-col">
+						<h3>About LifeSaver</h3>
+						<p>
+							LifeSaver is dedicated to ensuring a stable blood
+							supply for patients in need through voluntary blood
+							donations.
+						</p>
+						<div class="social-links">
+							<a href="#"><i class="fab fa-facebook-f"></i></a>
+							<a href="#"><i class="fab fa-twitter"></i></a>
+							<a href="#"><i class="fab fa-instagram"></i></a>
+							<a href="#"><i class="fab fa-linkedin-in"></i></a>
+						</div>
+					</div>
+					<div class="footer-col">
+						<h3>Quick Links</h3>
+						<ul>
+							<li><a href="#home">Home</a></li>
+							<li><a href="#about">About Us</a></li>
+							<li><a href="#process">Donation Process</a></li>
+							<li><a href="#eligibility">Eligibility</a></li>
+							<li><a href="#donate">Donate Now</a></li>
+						</ul>
+					</div>
+					<div class="footer-col">
+						<h3>Contact Us</h3>
+						<p>
+							<i class="fas fa-map-marker-alt"></i> 123 Health
+							Street, Medical City
+						</p>
+						<p><i class="fas fa-phone"></i> (123) 456-7890</p>
+						<p>
+							<i class="fas fa-envelope"></i> info@lifesaver.org
+						</p>
+					</div>
+				</div>
+				<div class="footer-bottom">
+					<p>&copy; 2023 LifeSaver. All Rights Reserved.</p>
+				</div>
+			</div>
+		</footer>
+
+		<script>
+			const menuToggle = document.querySelector(".menu-toggle");
+			const navLinks = document.querySelector(".navbar ul");
+
+			menuToggle.addEventListener("click", () => {
+				navLinks.classList.toggle("active");
+			});
+
+			document.querySelectorAll(".navbar ul li a").forEach((link) => {
+				link.addEventListener("click", () => {
+					navLinks.classList.remove("active");
+				});
+			});
+
+			const donationForm = document.getElementById("donationForm");
+
+			donationForm.addEventListener("submit", function (e) {
+				e.preventDefault();
+
+				const formData = new FormData(donationForm);
+				const formValues = Object.fromEntries(formData.entries());
+
+				console.log("Form submitted:", formValues);
+
+				fetch("http://127.0.0.1:8000/submitForm", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify(formValues),
+				})
+					.then((response) => response.json())
+					.then((data) => {
+						console.log("Success:", data);
+					})
+					.catch((error) => {
+						console.error("Error:", error);
+					})
+					.finally(() => {
+						donationForm.reset();
+					})
+
+				
+			});
+
+			document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+				anchor.addEventListener("click", function (e) {
+					e.preventDefault();
+
+					const targetId = this.getAttribute("href");
+					if (targetId === "#") return;
+
+					const targetElement = document.querySelector(targetId);
+					if (targetElement) {
+						window.scrollTo({
+							top: targetElement.offsetTop - 70,
+							behavior: "smooth",
+						});
+					}
+				});
+			});
+			window.addEventListener("scroll", function () {
+				const navbar = document.querySelector(".navbar");
+				if (window.scrollY > 50) {
+					navbar.style.boxShadow = "0 2px 10px rgba(0, 0, 0, 0.1)";
+				} else {
+					navbar.style.boxShadow = "none";
+				}
+			});
+		</script>
+	</body>
 </html>
